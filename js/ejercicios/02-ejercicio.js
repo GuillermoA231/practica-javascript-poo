@@ -15,7 +15,7 @@ const cuenta = {
     do {
         saldoAExtraer = prompt("ingrese el saldo a extraer");
     } while (isNaN(saldoAExtraer) || saldoAExtraer < 0);
-    this.saldo -= Number(saldoAExtraer);
+    saldoAExtraer > this.saldo ? alert('Saldo insuficiente.') : this.saldo -= Number(saldoAExtraer);
   },
   informar: function(){
     let informe = `Titular de la cuenta: ${this.propiedadTitular} - Saldo de la cuenta: ${this.saldo}`;
