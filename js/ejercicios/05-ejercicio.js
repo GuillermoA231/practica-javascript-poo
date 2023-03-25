@@ -32,44 +32,35 @@ RASCO CARACTERISTICO: AUSTERIDAD*/
 const FECHA = new Date();
 class Persona {
   constructor(nombre, edad, dni, sexo, peso, altura) {
-    typeof nombre !== "string"
-      ? () => {
-          throw new Error(
-            `El nombre debe de ser un texto, usted ingreso un ${typeof nombre}`
-          );
-        }
-      : false;
-    isNaN(edad) || edad < 0
-      ? () => {
-          throw new Error(`La edad debe de ser un número positivo`);
-        }
-      : false;
-    isNaN(dni) || dni.toString().length !== 8
-      ? () => {
-          throw new Error(`El dni debe de ser un numero de 8 digitos`);
-        }
-      : false;
-    typeof sexo !== "char" ||
-    sexo.toLowerCase() !== "m" ||
-    sexo.toLowerCase() !== "h"
-      ? () => {
-          throw new Error(`debe de ingresar H (Hombre) o M (Mujer)`);
-        }
-      : false;
+    if (typeof nombre !== "string" || !isNaN(nombre)) {
+      throw new Error(
+        `El nombre debe ser una cadena de caracteres, usted ingresó un ${typeof nombre}`
+      );
+    }
 
-    isNaN(peso) || peso < 0
-      ? () => {
-          throw new Error(`Debe de escribir un número positivo para el peso`);
-        }
-      : false;
-    isNaN(altura) || altura < 0
-      ? () => {
-          throw new Error(`Debe de escribir un número positivo para la altura`);
-        }
-      : false;
+    if (isNaN(edad) || edad < 0) {
+      throw new Error("La edad debe ser un número positivo.");
+    }
+
+    if (
+      sexo.toLowerCase() != "m" &&
+      sexo.toLowerCase() != "h"
+    ) {
+        console.log(sexo === "m")
+        console.log(sexo === "h")
+      throw new Error(`El sexo debe ser "m" o "h", usted ingresó ${sexo}`);
+    }
+
+    if (isNaN(peso) || peso < 0) {
+      throw new Error("El peso debe ser un número positivo.");
+    }
+
+    if (isNaN(altura) || altura < 0) {
+      throw new Error("La altura debe ser un número positivo.");
+    }
     this._nombre = nombre;
     this._edad = edad;
-    this._dni = dni || this.generarDni;
+    this._dni = this.generarDni;
     this._sexo = sexo;
     this._peso = peso;
     this._altura = altura;
@@ -118,27 +109,32 @@ class Persona {
     return this._edad >= 18 ? true : false;
   }
   get generarDni() {
-    this._dni = Math.floor(10000000 + Math.random() * 90000000);
+    return Math.floor(10000000 + Math.random() * 90000000);
   }
 }
 function crearPersonas(cantidad) {
-    let personas = [];
-    for (let i = 0; i < cantidad; i++) {
-      let nombre = prompt("Ingresa el nombre de la persona:");
-      let edad = parseInt(prompt("Ingresa la edad de la persona:"));
-      let dni = Persona.generarDni;
-      let sexo = prompt("Ingresa el sexo de la persona:");
-      let peso = parseFloat(prompt("Ingresa el peso de la persona en kilogramos:"));
-      let altura = parseFloat(prompt("Ingresa la altura de la persona en metros:"));
-      let persona = new Persona(nombre, edad, dni, sexo, peso, altura);
-      personas.push(persona);
-    }
-    return personas;
+  let personas = [];
+  for (let i = 0; i < cantidad; i++) {
+    let nombre = prompt("Ingresa el nombre de la persona:");
+    let edad = parseInt(prompt("Ingresa la edad de la persona:"));
+    let sexo = prompt("Ingresa el sexo de la persona:");
+    let peso = parseFloat(
+      prompt("Ingresa el peso de la persona en kilogramos:")
+    );
+    let altura = parseFloat(
+      prompt("Ingresa la altura de la persona en metros:")
+    );
+    let persona = new Persona(nombre, edad, null, sexo.toLowerCase(), peso, altura);
+    personas.push(persona);
   }
-  
-  let cantidadPersonas = parseInt(prompt("Ingresa la cantidad de personas a crear:"));
-  let listaPersonas = crearPersonas(cantidadPersonas);
-  
-  for (let i = 0; i < listaPersonas.length; i++) {
-    document.write(`${listaPersonas[i].mostrarDatos}`);
-  }
+  return personas;
+}
+
+let cantidadPersonas = parseInt(
+  prompt("Ingresa la cantidad de personas a crear:")
+);
+let listaPersonas = crearPersonas(cantidadPersonas);
+
+for (let i = 0; i < listaPersonas.length; i++) {
+  document.write(`${listaPersonas[i].mostrarDatos}`);
+}
