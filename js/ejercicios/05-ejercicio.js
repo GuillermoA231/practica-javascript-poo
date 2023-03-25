@@ -90,7 +90,7 @@ class Persona {
     this._fechaNacimiento >= 2010
       ? ((generacion = "GEN A"), (rasgo = "Tecnologico"))
       : this._fechaNacimiento >= 1994
-      ? ((generacion = "GEN Z"), (rasgo = "Ireverencia"))
+      ? ((generacion = "GEN Z"), (rasgo = "Irreverencia"))
       : this._fechaNacimiento >= 1981
       ? ((generacion = "GEN Y"), (rasgo = "Frustración"))
       : this._fechaNacimiento >= 1969
@@ -100,7 +100,7 @@ class Persona {
       : this._fechaNacimiento >= 1930
       ? ((generacion = "SILENT GEN"), (rasgo = "Austeridad"))
       : ((generacion = "Muy Anciano"), (rasgo = "Antiguo"));
-    return generacion + " - " + rasgo;
+    return `Generación: ${generacion} - Rasgo: ${rasgo}`;
   }
   get mostrarDatos() {
     return `Nombre: ${this._nombre} - Edad: ${this._edad} - DNI: ${this._dni} - Sexo: ${this._sexo} - Peso: ${this._peso} - Altura: ${this._altura} - Fecha de nacimiento: ${this._fechaNacimiento}`;
@@ -114,7 +114,8 @@ class Persona {
 }
 function crearPersonas(cantidad) {
   let personas = [];
-  for (let i = 0; i < cantidad; i++) {
+  let seguirCreando;
+  do {
     let nombre = prompt("Ingresa el nombre de la persona:");
     let edad = parseInt(prompt("Ingresa la edad de la persona:"));
     let sexo = prompt("Ingresa el sexo de la persona:");
@@ -126,15 +127,13 @@ function crearPersonas(cantidad) {
     );
     let persona = new Persona(nombre, edad, null, sexo.toLowerCase(), peso, altura);
     personas.push(persona);
-  }
+    seguirCreando = confirm('Crear otra persona?');
+  } while (seguirCreando);
   return personas;
 }
 
-let cantidadPersonas = parseInt(
-  prompt("Ingresa la cantidad de personas a crear:")
-);
-let listaPersonas = crearPersonas(cantidadPersonas);
+let listaPersonas = crearPersonas();
 
 for (let i = 0; i < listaPersonas.length; i++) {
-  document.write(`${listaPersonas[i].mostrarDatos}`);
+  document.write(`<p>${listaPersonas[i].mostrarDatos}</p> ${listaPersonas[i].mostrarGeneracion}<hr>`);
 }
