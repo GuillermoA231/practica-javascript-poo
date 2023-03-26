@@ -5,11 +5,12 @@ aniadirContacto(Contacto): Añade un contacto a la agenda, sino la agenda no pue
 Crea un menú con opciones por consola para probar todas estas funcionalidades. */
 
 let agendasArreglo = [];
-let inputUsuario = -1;
+let inputConsola = -1;
 let mensajeIntroduccion = `TRABAJO PRACTICO NUMERO 7 - AGENDA\n1 - CREAR AGENDA\n2 - AÑADIR CONTACTO\n3 - VERIFICAR CONTACTO \n4 - LISTA DE CONTACTOS\n5 - BUSCAR TELEFONO \n6 - ELIMINAR CONTACTO\n7 - ESTADO DE LA AGENDA\n8 - HUECOS LIBRES`;
+let inputUsuario;
 class Contacto {
   constructor(nombre, telefono) {
-    this._nombre = nombre.toLowerCase();
+    this._nombre = nombre;
     this._telefono = telefono;
   }
   get nombre() {
@@ -42,13 +43,31 @@ class Agenda {
       : console.log("Agenda Llena");
   }
   existeContacto(contacto) {
-    contacto = contacto.toLowerCase();
     return typeof contacto === "string"
-      ? this._contactos.find((element) => element.nombre === contacto)
+      ? this._contactos.find(
+          (element) => element.nombre.toLowerCase() === contacto.toLowerCase()
+        ) !== undefined
+        ? "El contacto si existe"
+        : "El contacto no existe"
       : typeof contacto === "number"
-      ? this._contactos.find((element) => element.telefono === contacto)
-      : "No existe el contacto";
+      ? this._contactos.find(
+          (element) => element.telefono === Number(contacto)
+        ) !== undefined
+        ? "El contacto si existe"
+        : "El contacto no existe"
+      : "Ingrese un valor válido";
   }
+
+  buscarContacto(nombre) {
+    let contacto = this._contactos.find(
+      (c) => c.nombre.toLowerCase() === nombre.toLowerCase()
+    );
+    //return contacto ? `El número del contacto ${contacto.nombre} es ${contacto.telefono ?? 'desconocido'}` : "El contacto no existe";
+    return contacto
+      ? `El número del contacto ${contacto.nombre} es ${contacto.telefono}`
+      : `El contacto no existe`;
+  }
+
   listarContactos() {
     let listado = [];
     this._contactos.forEach((contacto) => {
@@ -80,11 +99,13 @@ class Agenda {
     } huecos disponibles`;
   }
 }
-function crearContacto() {
-  let nombre, telefono;
-  nombre = prompt("Nombre del contacto.").trim();
-  telefono = Number(prompt("Telefono del contacto."));
-  return `${nombre},${telefono}`;
+function crearNombre() {
+  let nombre = prompt("Nombre del contacto.");
+  return nombre;
+}
+function crearTelefono() {
+  let telefono = prompt("Telefono del contacto.");
+  return telefono;
 }
 function crearNuevaAgenda() {
   let tamanioNuevaAgenda;
@@ -98,12 +119,6 @@ function crearNuevaAgenda() {
       nombreObjeto = "agenda" + contador;
     }
     tamanioNuevaAgenda = prompt("Ingresa el tamaño de la agenda:");
-    if (confirm(`desea crear un contacto para su agenda?`)) {
-      let nuevoContacto = crearContacto();
-      contactoNuevaAgenda.push(nuevoContacto);
-    } else {
-      contactoNuevaAgenda = contactoNuevaAgenda;
-    }
     let nuevoObjeto = new Agenda(contactoNuevaAgenda, tamanioNuevaAgenda);
     window[nombreObjeto] = nuevoObjeto;
     contador++;
@@ -113,6 +128,9 @@ function crearNuevaAgenda() {
     return null;
   }
 }
+let agenda1 = new Agenda();
+agendasArreglo.push(agenda1);
+/*`TRABAJO PRACTICO NUMERO 7 - AGENDA\n1 - CREAR AGENDA\n2 - AÑADIR CONTACTO\n3 - VERIFICAR CONTACTO \n4 - LISTA DE CONTACTOS\n5 - BUSCAR TELEFONO \n6 - ELIMINAR CONTACTO\n7 - VERIFICAR SI HAY ESPACIO DISPONIBLE\n8 - HUECOS LIBRES`; */
 function consola(input) {
   switch (input) {
     case 0:
@@ -121,25 +139,35 @@ function consola(input) {
       crearNuevaAgenda();
       return;
     case 2:
+      agenda1.agregarContacto(crearNombre(),crearTelefono());
       return;
     case 3:
+      inputUsuario = prompt("Ingrese el nombre o telefono del contacto");
+      console.log(agenda1.existeContacto(inputUsuario));
       return;
     case 4:
+      console.log(agenda1.listarContactos());
       return;
     case 5:
+      inputUsuario = prompt("Ingrese el nombre del contacto");
+      console.log(agenda1.buscarContacto(inputUsuario));
       return;
     case 6:
+      inputUsuario = prompt(`Ingrese el nombre o teléfono del contacto`);
+      agenda1.eliminarContacto(inputUsuario);
       return;
     case 7:
+      console.log(agenda1.agendaLlena());
       return;
     case 8:
+      console.log(agenda1.huecosLibres());
       return;
     default:
       return;
   }
 }
 do {
-    console.log(mensajeIntroduccion);
-  inputUsuario = Number(console.ReadLine("Ingrese su elección"));
-  consola(inputUsuario);
-} while (inputUsuario !== 0);
+  console.log(mensajeIntroduccion);
+  inputConsola = Number(prompt("Ingrese su elección"));
+  consola(inputConsola);
+} while (inputConsola !== 0);
