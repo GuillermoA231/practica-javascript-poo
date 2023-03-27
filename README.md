@@ -78,8 +78,81 @@ Crea un menú con opciones por consola para probar todas estas funcionalidades.
 
 ### 9- Crea una clase llamada "Animal" que tenga las propiedades "nombre" y "edad", y el método "emitirSonido". Luego, crea dos clases hijas llamadas "Perro" y "Gato" que hereden de "Animal" y tengan su propio método "emitirSonido". Finalmente, crea dos objetos, uno de la clase "Perro" y otro de la clase "Gato", y llama a sus métodos "emitirSonido" para verificar que cada animal emite el sonido adecuado. 
 
-### 10- crear una clase aeropuerto con las propiedades nombreAeropuerto y lista de aviones, esta clase deberá contener el método agregarAvion, el cual recibirá un objeto de tipo Avión, además de un método buscarAvion el cual recibirá el nombre de un avión y devolverá información en caso de encontrarlo, si no lo encontró indicar con un mensaje.
-Por su parte los aviones tendrán las propiedades: nombre, capacidad, destino, lista de pasajeros. Los aviones tienen el método abordar el cual permite que un pasajero suba al avión solo si hay capacidad disponible en el mismo, caso contrario mostrar un mensaje que indique que el avión está lleno.
+### 10- crear una clase aeropuerto con las propiedades nombreAeropuerto y lista de aviones, esta clase deberá contener el método agregarAvion, el cual recibirá un objeto de tipo Avión, además de un método buscarAvion el cual recibirá el nombre de un avión y devolverá información en caso de encontrarlo, si no lo encontró indicar con un mensaje.Por su parte los aviones tendrán las propiedades: nombre, capacidad, destino, lista de pasajeros. Los aviones tienen el método abordar el cual permite que un pasajero suba al avión solo si hay capacidad disponible en el mismo, caso contrario mostrar un mensaje que indique que el avión está lleno. Crear un objeto de tipo aeropuerto llamado "Aeropuerto Internacional", crear 3 objetos aviones a diferentes destinos. Agregar los 3 aviones al aeropuerto, buscar un avión y usar el método abordar.
 
-Crear un objeto de tipo aeropuerto llamado "Aeropuerto Internacional", crear 3 objetos aviones a diferentes destinos. Agregar los 3 aviones al aeropuerto, buscar un avión y usar el método abordar.
 
+## Nuevos ejercicios ❗: (estos ej. debe formar parte del tp4)
+
+### 11 - Crear un objeto persona que tenga las propiedades: nombre, apellido, edad, un valor verdadero o falso que indique si es estudiante y una lista de hobbies, este objeto debe contener los métodos para presentar a la persona, el cual mostrará todos los datos, y los métodos agregar, borrar y buscar un hobbie.Agregar por lo menos 3 hobbies y mostrarlos por pantalla, luego buscar el hobbie ‘viajar’ e indicar si la persona lo tiene o no. Por ultimo eliminar el primer hobbie y volver a mostrar todos por pantalla.
+
+### 12 - Crear un objeto calculadora, con las propiedades y métodos necesarios para realizar las operaciones de suma, resta, multiplicación y división. Mostrar por pantalla 2 operaciones con cada método.
+
+### 13 - Con el siguiente array de objetos, crear una funcion que permita dibujar una tabla con las columnas Producto - categoria - precio. Realizar las siguientes tareas:
+Mostrar la tabla completa
+
+filtrar el arreglo de productos por ‘Protectores solares' y mostrar la tabla filtrada.
+
+Buscar un producto serum y mostrarlo por pantalla,
+
+Buscar un producto 'Bruma’ y mostrar un mensaje adecuado para el usuario si el producto no existe en el array.
+```
+let listaProductos = [
+  {
+    nombreProducto: "Hidratante facial",
+    precio: 3500,
+    categoria: "Hidratante",
+  },
+  { nombreProducto: "Tonico exfoliante", precio: 2350.45, categoria: "Tonico" },
+  {
+    nombreProducto: "Protector solar factor 50",
+    precio: 3300,
+    categoria: "Protector solar",
+  },
+  {
+    nombreProducto: "Protector solar toque seco factor 50",
+    precio: 4100,
+    categoria: "Protector solar",
+  },
+  {
+    nombreProducto: "Protector solar con color factor 50",
+    precio: 3850.5,
+    categoria: "Protector solar",
+  },
+  {
+    nombreProducto: "Gel de limpieza facial",
+    precio: 1740.99,
+    categoria: "Limpieza",
+  },
+  { nombreProducto: "Tonico hidratante", precio: 1250.99, categoria: "Tonico" },
+  { nombreProducto: "Sérum hidratante", precio: 4250.99, categoria: "Sérum" },
+  {
+    nombreProducto: "Exfoliante de azúcar cherry",
+    precio: 1200,
+    categoria: "Labios",
+  },
+  {
+    nombreProducto: "Pads de hidrogel para contorno de ojos",
+    precio: 2800,
+    categoria: "Ojos",
+  },
+  {
+    nombreProducto: "Mascarilla facial",
+    precio: 3250.99,
+    categoria: "Mascaras",
+  },
+  { nombreProducto: "Sérum facial con PHA", precio: 3200, categoria: "Sérum" },
+  { nombreProducto: "Bálsamo labial", precio: 3200, categoria: "Labios" },
+  { nombreProducto: "Crema contorno de ojos", precio: 3200, categoria: "Ojos" },
+  {
+    nombreProducto: "Protector solar en barra",
+    precio: 3800,
+    categoria: "Protector solar",
+  },
+  {
+    nombreProducto: "Mascara de hidratación y reparación",
+    precio: 1200,
+    categoria: "Mascaras",
+  },
+  { nombreProducto: "Agua micellar", precio: 2890, categoria: "Limpieza" },
+];
+```
