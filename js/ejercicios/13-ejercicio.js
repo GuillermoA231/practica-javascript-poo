@@ -65,8 +65,35 @@ let listaProductos = [
   { nombreProducto: "Agua micellar", precio: 2890, categoria: "Limpieza" },
 ];
 /*crear una funcion que permita dibujar una tabla con las columnas Producto - categoria - precio. */
-document.write(`<table><thead><tr>Producto</tr><tr>Categorias</tr><tr>Precio</tr></thead><tbody>`);
-listaProductos.forEach((element) => {
-  document.write(`<tr><td>${element.nombreProducto}</td><td>${element.categoria}</td><td>${element.precio}</td></tr>`);
-});
-document.write(`</tbody></table>`);
+// Mostrar la tabla completa
+function mostrarTabla() {
+  document.write(
+    `<table><thead><tr>Producto</tr><tr>Categorias</tr><tr>Precio</tr></thead><tbody>`
+  );
+  listaProductos.forEach((element) => {
+    document.write(
+      `<tr><td>${element.nombreProducto}</td><td>${element.categoria}</td><td>${element.precio}</td></tr>`
+    );
+  });
+  document.write(`</tbody></table>`);
+}
+mostrarTabla();
+// filtrar el arreglo de productos por ‘Protectores solares' y mostrar la tabla filtrada.
+document.write(`<hr>`);
+function mostrarProtectoresSolares() {
+  document.write(
+    `<table><thead><tr>Producto</tr><tr>Categorias</tr><tr>Precio</tr></thead><tbody>`
+  );
+  listaProductos.forEach((element) => {
+    element.nombreProducto.includes(`Protector solar`)
+      ? document.write(
+          `<tr><td>${element.nombreProducto}</td><td>${element.categoria}</td><td>${element.precio}</td></tr>`
+        )
+      : false;
+  });
+  document.write(`</tbody></table>`);
+}
+mostrarProtectoresSolares();
+// Buscar un producto serum y mostrarlo por pantalla
+
+// Buscar un producto 'Bruma’ y mostrar un mensaje adecuado para el usuario si el producto no existe en el array.
