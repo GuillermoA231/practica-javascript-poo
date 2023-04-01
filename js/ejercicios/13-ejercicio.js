@@ -68,7 +68,7 @@ let listaProductos = [
 // Mostrar la tabla completa
 function mostrarTabla() {
   document.write(
-    `<table><thead><tr>Producto</tr><tr>Categorias</tr><tr>Precio</tr></thead><tbody>`
+    `<table><thead><tr><th>Producto</th><th>Categorias</th><th>Precio</th></tr></thead><tbody>`
   );
   listaProductos.forEach((element) => {
     document.write(
@@ -82,7 +82,7 @@ mostrarTabla();
 document.write(`<hr>`);
 function mostrarProtectoresSolares() {
   document.write(
-    `<table><thead><tr>Producto</tr><tr>Categorias</tr><tr>Precio</tr></thead><tbody>`
+    `<table><thead><tr><th>Producto</th><th>Categorias</th><th>Precio</th></tr></thead><tbody>`
   );
   listaProductos.forEach((element) => {
     element.nombreProducto.includes(`Protector solar`)
@@ -95,5 +95,37 @@ function mostrarProtectoresSolares() {
 }
 mostrarProtectoresSolares();
 // Buscar un producto serum y mostrarlo por pantalla
-
+document.write(`<hr>`);
+function mostrarSerum() {
+  document.write(
+    `<table><thead><tr><th>Producto</th><th>Categorias</th><th>Precio</th></tr></thead><tbody>`
+  );
+  listaProductos.forEach((element) => {
+    element.categoria.includes(`Sérum`)
+      ? document.write(
+          `<tr><td>${element.nombreProducto}</td><td>${element.categoria}</td><td>${element.precio}</td></tr>`
+        )
+      : false;
+  });
+  document.write(`</tbody></table>`);
+}
+mostrarSerum();
 // Buscar un producto 'Bruma’ y mostrar un mensaje adecuado para el usuario si el producto no existe en el array.
+document.write(`<hr>`);
+function mostrarBruma() {
+  let existeProducto = false;
+  document.write(
+    `<table><thead><tr><th>Producto</th><th>Categorias</th><th>Precio</th></tr></thead><tbody>`
+  );
+  listaProductos.forEach((element) => {
+    element.categoria.includes(`Bruma`)
+      ? ((existeProducto = true),
+        document.write(
+          `<tr><td>${element.nombreProducto}</td><td>${element.categoria}</td><td>${element.precio}</td></tr>`
+        ))
+      : existeProducto = false;
+  });
+  existeProducto ? true : alert(`El producto Bruma no existe`)
+  document.write(`</tbody></table>`);
+}
+mostrarBruma();
